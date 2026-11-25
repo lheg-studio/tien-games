@@ -1,0 +1,143 @@
+<!doctype html><html lang="es" translate="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google" content="notranslate"><meta name="theme-color" content="#08091b"><title>Tu tienda digital | TIEN GAMES</title><style>
+:root{--bg:#070817;--panel:#11152b;--muted:#aeb8d5;--cyan:#19d9ff;--purple:#b34cff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#172d67 0%,#08091b 48%,#050610 100%);color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{position:sticky;top:0;z-index:10;background:#08091bef;border-bottom:1px solid #1c3677;backdrop-filter:blur(14px)}
+nav{max-width:1150px;margin:auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{font-size:1.35rem;font-weight:1000;letter-spacing:1px;font-style:italic;text-shadow:0 0 18px #08cfff;color:white;text-decoration:none}
+.brand span{color:var(--cyan)}.navlinks{display:flex;gap:18px;flex-wrap:wrap}.navlinks a,footer a{color:#dceaff;text-decoration:none;font-weight:700}
+main{max-width:1150px;margin:auto;padding:28px 20px 55px}
+.hero{display:grid;grid-template-columns:1fr .9fr;gap:25px;align-items:center;margin:15px 0 45px}
+.kicker{color:var(--cyan);font-weight:900;letter-spacing:3px;text-transform:uppercase;font-size:.78rem}
+h1{font-size:clamp(2.5rem,7vw,5rem);line-height:.95;margin:12px 0 18px;font-weight:1000;font-style:italic;letter-spacing:-3px}
+h1 span{color:var(--cyan);text-shadow:0 0 24px #00bfff}
+p{color:#c8d3ef;line-height:1.7}.poster{width:100%;max-height:430px;object-fit:cover;object-position:top;border-radius:22px;border:1px solid #347dff;box-shadow:0 0 32px #124bff65}
+.cta,.button{display:inline-block;background:linear-gradient(100deg,#00bdf5,#1267ff);color:white;text-decoration:none;font-weight:900;padding:12px 18px;border:0;border-radius:12px}
+.section-title{text-align:center;margin:20px 0 25px}.section-title h2{font-size:2rem;margin-bottom:5px}.section-title p{margin-top:0;color:var(--muted)}
+.games{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.game{background:linear-gradient(160deg,#171d3a,#0d1024);border:1px solid color-mix(in srgb,var(--accent),transparent 35%);border-radius:19px;padding:22px;box-shadow:0 0 20px color-mix(in srgb,var(--accent),transparent 88%)}
+.game h2,.game h3{color:var(--accent);margin:0 0 6px}.sub{color:var(--muted);margin-bottom:14px}
+.pack{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 0;border-top:1px solid #ffffff16;font-size:.92rem}
+.pack b{white-space:nowrap}.pack a{background:var(--accent);color:#06101e;font-weight:900;padding:7px 10px;border-radius:8px;text-decoration:none}
+.card{background:#10152d;border:1px solid #1b3d78;border-radius:17px;padding:22px;margin:15px 0}
+.card h2{color:var(--cyan)}.back{display:inline-block;margin:0 0 18px;color:var(--cyan);text-decoration:none;font-weight:800}
+footer{text-align:center;color:#8390b2;padding:24px 15px;border-top:1px solid #1b3d78;font-size:.86rem}
+footer .footlinks{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:0 0 12px}
+.float-wa{position:fixed;right:15px;bottom:15px;z-index:20;background:#20c967;color:#fff;text-decoration:none;border-radius:50px;padding:13px 17px;font-weight:950;box-shadow:0 5px 25px #00c85366}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.poster{max-height:300px;object-fit:contain;background:#050610}.games{grid-template-columns:1fr}nav{align-items:flex-start;flex-direction:column}.navlinks{gap:13px;font-size:.9rem}main{padding:22px 15px 45px}}
+
+/* TIEN GAMES · Motion Pack */
+@keyframes tg-rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tg-glow{0%,100%{filter:drop-shadow(0 0 4px #00cfff55)}50%{filter:drop-shadow(0 0 13px #00cfffaa)}}
+@keyframes tg-shine{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+body{overflow-x:hidden}
+header{animation:tg-rise .55s ease both}
+.brand{animation:tg-glow 3.5s ease-in-out infinite}
+main>*{animation:tg-rise .7s ease both}
+.game,.card{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.game:hover,.card:hover{transform:translateY(-5px);border-color:#24cfff;box-shadow:0 12px 34px #087dff30}
+.cta,.button,.pack a,.float-wa{transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+.cta:hover,.button:hover,.pack a:hover,.float-wa:hover{transform:translateY(-3px);filter:brightness(1.13);box-shadow:0 8px 25px #087dff55}
+.cta:active,.button:active,.pack a:active{transform:scale(.97)}
+.section-title h2{background:linear-gradient(90deg,#fff,#19d9ff,#a7aaff,#fff);background-size:200% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:tg-shine 7s linear infinite}
+.dev-card{position:relative;overflow:hidden;background:linear-gradient(135deg,#121a39,#0b1026);border:1px solid #244c91;border-radius:18px;padding:20px;transition:transform .25s ease,border-color .25s ease}
+.dev-card:before{content:"";position:absolute;inset:0 auto 0 -120%;width:70%;background:linear-gradient(100deg,transparent,#ffffff12,transparent);transform:skewX(-20deg);animation:tg-sweep 6s ease-in-out infinite}
+@keyframes tg-sweep{0%,65%{left:-120%}100%{left:160%}}
+.dev-label{display:inline-block;color:#08101d;background:#19d9ff;border-radius:30px;padding:5px 10px;font-size:.72rem;font-weight:950;letter-spacing:1px}
+.dev-card p{margin-bottom:0}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+</style></head><body><header><nav><a class="brand" translate="no" href="index.html">♛ TIEN <span>GAMES</span></a>
+    <div class="navlinks"><a href="index.html#juegos">Juegos</a><a href="index.html#novedades">Novedades</a><a href="index.html#contacto">Contacto</a><a href="privacidad.html">Privacidad</a></div></nav></header><main><section class="hero"><div><div class="kicker">Tu tienda digital</div><h1>RECARGA.<br><span>JUEGA.</span><br>DISFRUTA.</h1><p>Encuentra recargas y productos digitales para tus videojuegos favoritos. Elige tu juego y consulta tu pedido por WhatsApp.</p><a class="cta" href="#juegos">⚡ VER LOS JUEGOS</a></div></section>
+<section id="juegos"><div class="section-title"><h2>🎮 Elige tu juego</h2><p>Entra en cada apartado para ver sus paquetes y precios.</p></div><div class="games"><article class="game" style="--accent:#d94cff"><h3>FREE FIRE</h3><div class="sub">💎 Diamantes</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="free-fire.html">VER PAQUETES →</a></article><article class="game" style="--accent:#ff4545"><h3>BLOOD STRIKE</h3><div class="sub">🪙 Oros</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="blood-strike.html">VER PAQUETES →</a></article><article class="game" style="--accent:#ffd51e"><h3>PUBG MOBILE</h3><div class="sub">🪙 UC</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="pubg-mobile.html">VER PAQUETES →</a></article><article class="game" style="--accent:#19cfff"><h3>ROBLOX</h3><div class="sub">💠 Robux / tarjetas digitales</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="roblox.html">VER PAQUETES →</a></article></div></section>
+
+<section id="novedades" style="margin-top:48px">
+  <div class="section-title"><h2>Más de TIEN GAMES</h2><p>Estamos preparando nuevas funciones para mejorar tu experiencia.</p></div>
+  <div class="games">
+    <article class="dev-card"><span class="dev-label">EN DESARROLLO</span><h3>Historial de pedidos</h3><p>Un espacio para consultar el estado de tus compras y pedidos anteriores.</p></article>
+    <article class="dev-card"><span class="dev-label">EN DESARROLLO</span><h3>Ofertas y promociones</h3><p>Próximamente publicaremos promociones especiales y novedades del catálogo.</p></article>
+    <article class="dev-card"><span class="dev-label">EN DESARROLLO</span><h3>Programa de puntos</h3><p>Estamos evaluando un sistema de beneficios para clientes frecuentes.</p></article>
+    <article class="dev-card"><span class="dev-label">EN DESARROLLO</span><h3>App TIEN GAMES</h3><p>Una posible aplicación para acceder más rápido a nuestros servicios.</p></article>
+  </div>
+  <p style="text-align:center;font-weight:900;color:#19d9ff;margin-top:20px">TIEN GAMES ESTÁ EN DESARROLLO. ¡Seguimos trabajando para ofrecerte más!</p>
+</section>
+
+<section class="card" id="contacto" style="text-align:center"><h2>¿Necesitas ayuda?</h2><p>Escríbenos para consultar disponibilidad, pagos o el estado de tu pedido.</p><a class="cta" href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">CONTACTAR POR WHATSAPP</a></section></main><footer><div class="footlinks"><a href="privacidad.html">Política de privacidad</a><a href="terminos.html">Términos y condiciones</a><a href="reembolsos.html">Reembolsos</a><a href="index.html#contacto">Contacto</a></div>© <span class="year"></span> TIEN GAMES · Tu tienda digital</footer>
+<script>document.querySelectorAll(".year").forEach(e=>e.textContent=new Date().getFullYear());</script><a class="float-wa" href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">WhatsApp</a>
+<script>
+(() => {
+  const items = document.querySelectorAll('.game,.card,.dev-card,.pack');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  items.forEach(el => el.classList.add('tg-pending'));
+  const style = document.createElement('style');
+  style.textContent = '.tg-pending{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.tg-pending.tg-visible{opacity:1;transform:translateY(0)}';
+  document.head.appendChild(style);
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if(entry.isIntersecting){entry.target.classList.add('tg-visible');observer.unobserve(entry.target);}
+  }), {threshold:.08});
+  items.forEach(el => observer.observe(el));
+})();
+</script>
+
+
+<style>
+#tien-sorteo-6160 {
+  margin: 35px auto;
+  padding: 30px 20px;
+  max-width: 1050px;
+  text-align: center;
+  color: white;
+  border: 1px solid #168bff;
+  border-radius: 22px;
+  background: radial-gradient(circle at top, #123d79, #071326 70%);
+  box-shadow: 0 0 25px #087bff55;
+  animation: tienGlow 3s ease-in-out infinite alternate;
+}
+#tien-sorteo-6160 h2 {
+  font-size: clamp(25px, 5vw, 42px);
+  margin: 12px 0;
+  color: #55c7ff;
+}
+#tien-sorteo-6160 .premio {
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 18px #168bff;
+}
+#tien-sorteo-6160 p { line-height: 1.7; }
+#tien-sorteo-6160 .sorteo-etiqueta {
+  color: #72d6ff;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+@keyframes tienGlow {
+  from { box-shadow: 0 0 12px #087bff44; }
+  to { box-shadow: 0 0 32px #087bff99; }
+}
+.tien-creditos {
+  padding: 25px 12px;
+  text-align: center;
+  color: #aebed4;
+  font-size: 13px;
+  border-top: 1px solid #ffffff20;
+}
+.tien-creditos strong { color: #59bfff; }
+</style>
+
+<section id="tien-sorteo-6160">
+  <div class="sorteo-etiqueta">PROMOCIÓN ESPECIAL · TIEN GAMES</div>
+  <h2>¡GRAN SORTEO!</h2>
+  <div class="premio">6.160 DIAMANTES</div>
+  <p>¡Tu próxima recarga puede darte una oportunidad de ganar!</p>
+  <p><strong>Compras desde G. 30.000 = 1 participación.</strong></p>
+  <p>Máximo: <strong>30 participantes.</strong></p>
+  <p>Consultá las bases, la fecha y el método del sorteo antes de participar.</p>
+</section>
+
+<footer class="tien-creditos">
+  <p>Plataforma desarrollada conjuntamente por</p>
+  <strong>LHEG STUDIO × NOVEX STUDIO</strong>
+  <p>TIEN GAMES · RECARGA. JUEGA. DISFRUTA.</p>
+</footer>
+
+</body></html>
