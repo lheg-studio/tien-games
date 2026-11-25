@@ -1,101 +1,136 @@
-const WHATSAPP = ""; // Agrega aquí tu número con código de país, sin + ni espacios.
+const WHATSAPP = "595993420918";
 
-const games = [
- {
-  id:"freefire",name:"FREE FIRE",unit:"Diamantes",symbol:"💎",
-  packages:[
-   [110,7200],[341,20000],[572,33000],
-   [1166,62000],[2398,126000],[6160,310000]
-  ]
- },
- {
-  id:"bloodstrike",name:"BLOOD STRIKE",unit:"Oros",symbol:"⚡",
-  packages:[
-   [105,6500],[320,19500],[540,32000],
-   [645,38500],[1100,64000],[2260,128000],
-   [3120,180000],[5800,320000],[10320,576000]
-  ]
- },
- {
-  id:"pubg",name:"PUBG MOBILE",unit:"UC",symbol:"🎯",
-  packages:[
-   [60,7500],[325,35000],[385,43000],
-   [660,73000],[1800,185000],
-   [3850,350000],[8100,697000]
-  ]
- },
- {
-  id:"roblox",name:"ROBLOX",unit:"Robux",symbol:"⬛",
-  packages:[
-   [10,1000],[50,4000],[100,7500],[150,11500],
-   [200,15000],[400,30000],[500,36000],
-   [600,43500],[800,58000],[1000,71500]
-  ]
- }
-];
+const games = {
+  "free-fire": {
+    name: "Free Fire",
+    currency: "diamantes",
+    symbol: "FF",
+    packages: [
+      [110, 7200],
+      [341, 20000],
+      [572, 33000],
+      [1166, 62000],
+      [2398, 126000],
+      [6160, 310000]
+    ]
+  },
+  "blood-strike": {
+    name: "Blood Strike",
+    currency: "oro",
+    symbol: "BS",
+    packages: [
+      [105, 6500],
+      [320, 19500],
+      [540, 32000],
+      [645, 38500],
+      [1100, 64000],
+      [2260, 128000],
+      [3120, 180000],
+      [5800, 320000],
+      [10320, 576000]
+    ]
+  },
+  "pubg-mobile": {
+    name: "PUBG Mobile",
+    currency: "UC",
+    symbol: "PUBG",
+    packages: [
+      [60, 7500],
+      [325, 35000],
+      [385, 43000],
+      [660, 73000],
+      [1800, 185000],
+      [3850, 350000],
+      [8100, 697000]
+    ]
+  },
+  "roblox": {
+    name: "Roblox",
+    currency: "Robux",
+    symbol: "R",
+    packages: [
+      [10, 1000],
+      [50, 4000],
+      [100, 7500],
+      [150, 11500],
+      [200, 15000],
+      [400, 30000],
+      [500, 36000],
+      [600, 43500],
+      [800, 58000],
+      [1000, 71500]
+    ]
+  }
+};
 
-const money = n => "Gs. " + n.toLocaleString("es-PY");
+const money = value => "Gs. " + Number(value).toLocaleString("es-PY");
 
-const gamesBox = document.getElementById("games");
-const packageBox = document.getElementById("packageList");
-const title = document.getElementById("gameTitle");
-const search = document.getElementById("search");
-
-let selected = null;
-
-function renderGames(){
- gamesBox.innerHTML = games.map(g=>`
-  <article class="game ${selected===g.id?"active":""}" data-id="${g.id}">
-   <div class="symbol">${g.symbol}</div>
-   <h3>${g.name}</h3>
-   <p>${g.packages.length} paquetes disponibles</p>
-  </article>
- `).join("");
-
- document.querySelectorAll(".game").forEach(el=>{
-  el.addEventListener("click",()=>selectGame(el.dataset.id));
- });
+function orderLink(game, amount, price) {
+  const message = `Hola TIEN GAMES. Quiero solicitar ${amount} ${game.currency} de ${game.name}. Precio: ${money(price)}.`;
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
 }
 
-function selectGame(id){
- selected=id;
- const game=games.find(g=>g.id===id);
- title.textContent=game.name;
+function renderPackages(slug, target) {
+  const game = games[slug];
+  const element = document.querySelector(target);
+  if (!game || !element) return;
 
- packageBox.innerHTML=`
-  <div class="package-list">
-   ${game.packages.map(([amount,price])=>`
-    <article class="package">
-     <strong>${amount.toLocaleString("es-PY")} ${game.unit}</strong>
-     <div class="price">${money(price)}</div>
-     <button onclick="order('${game.name}',${amount},'${game.unit}',${price})">
-      SOLICITAR RECARGA
-     </button>
+  element.innerHTML = game.packages.map(([amount, price]) => `
+    <article class="package fade-in">
+      <strong>${amount.toLocaleString("es-PY")} ${game.currency}</strong>
+      <span>${money(price)}</span>
+      <a href="${orderLink(game, amount, price)}" target="_blank" rel="noopener">
+        SOLICITAR RECARGA
+      </a>
     </article>
-   `).join("")}
-  </div>
- `;
-
- renderGames();
+  `).join("");
 }
 
-function order(game,amount,unit,price){
- const message=`Hola TIEN GAMES. Quiero solicitar ${amount} ${unit} de ${game}. Precio: ${money(price)}.`;
- if(!WHATSAPP){
-  alert("El catálogo está listo. Configura el número de WhatsApp en js/script.js para recibir pedidos.");
-  return;
- }
- window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`,"_blank");
+function renderHomePackages() {
+  const element = document.querySelector("#home-packages");
+  if (!element) return;
+
+  const all = Object.values(games).flatMap(game =>
+    game.packages.map(([amount, price]) => ({game, amount, price}))
+  );
+
+  element.innerHTML = all.map(item => `
+    <article class="package">
+      <strong>${item.amount.toLocaleString("es-PY")} ${item.game.currency}</strong>
+      <small style="color:#91a5c2">${item.game.name}</small>
+      <span>${money(item.price)}</span>
+      <a href="${orderLink(item.game, item.amount, item.price)}" target="_blank" rel="noopener">
+        SOLICITAR
+      </a>
+    </article>
+  `).join("");
 }
 
-search.addEventListener("input",()=>{
- const q=search.value.toLowerCase().trim();
- document.querySelectorAll(".game").forEach(el=>{
-  const g=games.find(x=>x.id===el.dataset.id);
-  const matches=g.name.toLowerCase().includes(q)||
-   g.packages.some(p=>String(p[0]).includes(q));
-  el.style.display=matches?"":"none";
- });
+function setupSearch() {
+  const search = document.querySelector("#game-search");
+  if (!search) return;
+
+  search.addEventListener("input", () => {
+    const query = search.value.toLowerCase();
+    document.querySelectorAll(".game-card").forEach(card => {
+      card.style.display = card.textContent.toLowerCase().includes(query) ? "" : "none";
+    });
+  });
+}
+
+function setupMenu() {
+  const button = document.querySelector(".menu-button");
+  const links = document.querySelector(".nav-links");
+  if (button && links) {
+    button.addEventListener("click", () => links.classList.toggle("open"));
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupMenu();
+  setupSearch();
+  renderHomePackages();
+
+  const page = document.body.dataset.game;
+  if (page) renderPackages(page, "#game-packages");
 });
-
-renderGames();
