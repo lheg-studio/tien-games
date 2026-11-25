@@ -74,7 +74,41 @@ footer .group-ln-footer{display:block;margin-top:9px;color:#7f91b8;font-size:.72
  .group-ln-splash,.group-ln-splash-inner,.group-ln-loading:after{animation:none!important;transition:none!important}
 }
 
-</style></head><body>
+</style>
+<style id="tg-home-v2">
+body{background:
+radial-gradient(ellipse at 50% -12%,#183b79 0%,transparent 48%),
+linear-gradient(145deg,#050711,#090d1d 60%,#050711)}
+header{border-bottom-color:#2455a0}
+.brand{letter-spacing:2px}
+.hero{min-height:390px;padding:24px 0}
+.hero>div{animation:tg-home-in .8s both}
+.hero .kicker{letter-spacing:4px}
+.hero h1{text-shadow:0 8px 30px #0008}
+.poster{transition:transform .45s,box-shadow .45s}
+.poster:hover{transform:scale(1.015);box-shadow:0 0 45px #167cff80}
+.games{gap:20px}
+.game{position:relative;overflow:hidden;min-height:190px;padding:25px}
+.game:after{content:"";position:absolute;right:-35px;bottom:-65px;width:150px;height:150px;border:1px solid var(--accent);border-radius:50%;opacity:.25;box-shadow:0 0 0 20px color-mix(in srgb,var(--accent),transparent 90%)}
+.game h3{font-size:1.35rem;letter-spacing:1px}
+.game .button{position:relative;z-index:1}
+.dev-card{min-height:160px}
+.card#contacto{background:linear-gradient(130deg,#14264b,#10152d);border-color:#2873d5}
+.float-wa{border:1px solid #ffffff55}
+.group-ln-mark{
+ width:76px;height:76px;border-radius:20px;border:1px solid #19d9ff;
+ background:linear-gradient(145deg,#142c55,#080d1d);
+ box-shadow:0 0 22px #00cfff55,inset 0 0 22px #00cfff20;
+ animation:tg-logo-pulse 1.8s ease-in-out infinite;
+}
+.group-ln-name{font-size:clamp(1.15rem,5vw,1.8rem);letter-spacing:2px}
+.group-ln-loading{width:145px;height:3px}
+@keyframes tg-logo-pulse{0%,100%{transform:scale(1);box-shadow:0 0 18px #00cfff55}50%{transform:scale(1.06);box-shadow:0 0 36px #00cfffaa}}
+@keyframes tg-home-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.hero{padding:10px 0 25px}.game{min-height:0}}
+</style>
+
+</head><body>
 
 <div class="group-ln-splash" id="groupLnSplash" aria-label="Conectando con el servidor">
   <div class="group-ln-splash-inner">

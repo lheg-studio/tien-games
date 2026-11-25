@@ -48,54 +48,89 @@ main>*{animation:tg-rise .7s ease both}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
 </style>
-<style id="group-ln-style">
-.group-ln-credit {
-  display:block;
-  width:fit-content;
-  margin:12px auto;
-  padding:6px 12px;
-  color:#91baff;
-  font-size:10px;
-  font-weight:500;
-  letter-spacing:1.2px;
-  text-align:center;
-  opacity:.78;
+
+
+
+<style id="tg-catalog-v2">
+:root{color-scheme:dark;--game-accent:#ff4545;--game-dark:#350d17;--game-glow:#ff454530}
+body{overflow-x:hidden;background:
+radial-gradient(ellipse at 50% 0%,var(--game-glow),transparent 48%),
+linear-gradient(145deg,#050711,#090d1b 55%,#050711)}
+header{background:#070a14ed;border-bottom:1px solid var(--game-accent)}
+.brand{letter-spacing:2px;text-shadow:0 0 18px var(--game-accent)}
+.navlinks a{transition:color .2s ease}
+.navlinks a:hover,.back:hover,footer a:hover{color:var(--game-accent)}
+main{max-width:1050px}
+.back{padding:10px 0;transition:color .2s}
+.catalog-banner{
+ position:relative;overflow:hidden;margin:12px 0 22px;padding:25px;
+ border:1px solid var(--game-accent);border-radius:22px;
+ background:linear-gradient(115deg,var(--game-dark),#101426 75%);
+ box-shadow:0 12px 45px #0007,0 0 24px color-mix(in srgb,var(--game-accent),transparent 82%);
 }
-.group-ln-credit strong {
-  color:#fff;
-  font-weight:700;
+.catalog-banner:after{
+ content:"";position:absolute;width:180px;height:180px;right:-55px;top:-75px;
+ border:1px solid var(--game-accent);border-radius:50%;
+ box-shadow:0 0 0 18px color-mix(in srgb,var(--game-accent),transparent 88%),
+ 0 0 0 38px color-mix(in srgb,var(--game-accent),transparent 93%);
 }
-.group-ln-welcome {
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:12px;
-  background:radial-gradient(circle at center,#102b55,#050914 70%);
-  color:white;
-  animation:lnFadeOut 1s ease 2s forwards;
-  pointer-events:none;
+.catalog-banner small{display:block;color:var(--game-accent);font-weight:900;letter-spacing:3px}
+.catalog-banner strong{display:block;margin-top:7px;font-size:clamp(1.5rem,5vw,2.5rem);font-weight:1000}
+.catalog-banner span{display:block;margin-top:6px;color:#b9c5dc;font-size:.9rem}
+section.card{
+ position:relative;overflow:hidden;margin:0;padding:clamp(20px,4vw,34px);
+ border:1px solid color-mix(in srgb,var(--game-accent),transparent 45%);
+ border-radius:23px;background:linear-gradient(145deg,#151a2d,#0b1020 75%);
+ box-shadow:0 18px 55px #0006;
 }
-.group-ln-welcome h2 {
-  margin:0;
-  font-size:clamp(26px,7vw,48px);
-  letter-spacing:3px;
+section.card:before{
+ content:"";position:absolute;left:0;top:0;width:100%;height:3px;
+ background:linear-gradient(90deg,transparent,var(--game-accent),transparent);
 }
-.group-ln-welcome p {
-  color:#91baff;
-  font-size:11px;
-  letter-spacing:2px;
+section.card h1{letter-spacing:-2px;text-shadow:0 0 25px color-mix(in srgb,var(--game-accent),transparent 65%)}
+section.card>p:first-of-type{color:var(--game-accent);font-weight:900;letter-spacing:1px}
+.pack{
+ position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto auto;
+ align-items:center;gap:13px;margin:10px 0;padding:15px;
+ border:1px solid #ffffff16;border-radius:13px;
+ background:linear-gradient(100deg,var(--game-dark),#111729);
+ transition:transform .22s,border-color .22s,box-shadow .22s;
+ animation:tg-package-in .5s both;
 }
-@keyframes lnFadeOut {
-  to { opacity:0; visibility:hidden; }
+.pack:nth-of-type(2){animation-delay:.04s}
+.pack:nth-of-type(3){animation-delay:.08s}
+.pack:nth-of-type(4){animation-delay:.12s}
+.pack:nth-of-type(5){animation-delay:.16s}
+.pack:nth-of-type(6){animation-delay:.20s}
+.pack:nth-of-type(7){animation-delay:.24s}
+.pack:nth-of-type(8){animation-delay:.28s}
+.pack:nth-of-type(9){animation-delay:.32s}
+.pack:nth-of-type(10){animation-delay:.36s}
+.pack:hover{transform:translateY(-3px);border-color:var(--game-accent);box-shadow:0 8px 25px #0005}
+.pack span{font-weight:800;color:#f1f5ff}
+.pack b{color:var(--game-accent);font-size:1rem;white-space:nowrap}
+.pack a{
+ display:inline-block;min-width:65px;text-align:center;padding:9px 13px;
+ border-radius:9px;background:var(--game-accent);color:#080b14;
+ font-weight:1000;text-decoration:none;transition:transform .2s,filter .2s;
 }
+.pack a:hover{transform:scale(1.05);filter:brightness(1.15)}
+section.card>p:last-child{padding:13px;margin-top:18px;border-left:3px solid var(--game-accent);background:#ffffff08}
+.dev-card{border-color:color-mix(in srgb,var(--game-accent),transparent 55%)}
+.float-wa{border:1px solid #ffffff55}
+footer{margin-top:35px}
+@keyframes tg-package-in{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){
+ .catalog-banner{padding:20px}
+ .pack{grid-template-columns:minmax(0,1fr) auto;gap:9px;padding:13px}
+ .pack a{grid-column:1/-1;width:100%;padding:10px}
+ .pack b{font-size:.92rem}
+}
+@media(prefers-reduced-motion:reduce){.pack{animation:none!important}}
 </style>
 
-</head><body><header><nav><a class="brand" translate="no" href="index.html">♛ TIEN <span>GAMES</span></a>
-    <div class="navlinks"><a href="index.html#juegos">Juegos</a><a href="index.html#novedades">Novedades</a><a href="index.html#contacto">Contacto</a><a href="privacidad.html">Privacidad</a></div></nav></header><main><a class="back" href="index.html">← Volver a todos los juegos</a><section class="card" style="--accent:#ff4545"><div class="kicker">TIEN GAMES · CATÁLOGO</div><h1 style="font-size:clamp(2.3rem,6vw,4rem);color:#ff4545">BLOOD STRIKE</h1><p>🪙 Oros</p><div class="pack"><span>105 oros</span><b>Gs. 6.500</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%20105%20oros%20-%20Gs.%206.500.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>320 oros</span><b>Gs. 19.500</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%20320%20oros%20-%20Gs.%2019.500.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>540 oros</span><b>Gs. 32.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%20540%20oros%20-%20Gs.%2032.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>645 oros</span><b>Gs. 38.500</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%20645%20oros%20-%20Gs.%2038.500.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>1.100 oros</span><b>Gs. 64.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%201.100%20oros%20-%20Gs.%2064.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>2.260 oros</span><b>Gs. 128.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%202.260%20oros%20-%20Gs.%20128.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>3.120 oros</span><b>Gs. 180.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%203.120%20oros%20-%20Gs.%20180.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>5.800 oros</span><b>Gs. 320.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%205.800%20oros%20-%20Gs.%20320.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>10.320 oros</span><b>Gs. 576.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%2010.320%20oros%20-%20Gs.%20576.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><p style="font-size:.85rem">Los pedidos se confirman por WhatsApp. Consulta disponibilidad y condiciones antes de pagar.</p></section>
+</head><body data-game="blood-strike"><header><nav><a class="brand" translate="no" href="index.html">♛ TIEN <span>GAMES</span></a>
+    <div class="navlinks"><a href="index.html#juegos">Juegos</a><a href="index.html#novedades">Novedades</a><a href="index.html#contacto">Contacto</a><a href="privacidad.html">Privacidad</a></div></nav></header><main><a class="back" href="index.html">← Volver a todos los juegos</a><section class="catalog-banner"><small>TIEN GAMES · CATÁLOGO OFICIAL</small><strong>BLOOD STRIKE</strong><span>RECARGAS DIGITALES · OROS</span></section><section class="card" style="--accent:#ff4545"><div class="kicker">TIEN GAMES · CATÁLOGO</div><h1 style="font-size:clamp(2.3rem,6vw,4rem);color:#ff4545">BLOOD STRIKE</h1><p>🪙 Oros</p><div class="pack"><span>105 oros</span><b>Gs. 6.500</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%20105%20oros%20-%20Gs.%206.500.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>320 oros</span><b>Gs. 19.500</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%20320%20oros%20-%20Gs.%2019.500.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>540 oros</span><b>Gs. 32.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%20540%20oros%20-%20Gs.%2032.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>645 oros</span><b>Gs. 38.500</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%20645%20oros%20-%20Gs.%2038.500.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>1.100 oros</span><b>Gs. 64.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%201.100%20oros%20-%20Gs.%2064.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>2.260 oros</span><b>Gs. 128.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%202.260%20oros%20-%20Gs.%20128.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>3.120 oros</span><b>Gs. 180.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%203.120%20oros%20-%20Gs.%20180.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>5.800 oros</span><b>Gs. 320.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%205.800%20oros%20-%20Gs.%20320.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><div class="pack"><span>10.320 oros</span><b>Gs. 576.000</b><a href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20consultar%20por%3A%20BLOOD%20STRIKE%20-%2010.320%20oros%20-%20Gs.%20576.000.%20%C2%BFMe%20ayudan%20con%20mi%20pedido%3F" target="_blank" rel="noopener">Pedir</a></div><p style="font-size:.85rem">Los pedidos se confirman por WhatsApp. Consulta disponibilidad y condiciones antes de pagar.</p></section>
 <section class="dev-card" style="margin:22px 0">
   <span class="dev-label">EN DESARROLLO</span>
   <h2>Más funciones próximamente</h2>
@@ -121,8 +156,6 @@ main>*{animation:tg-rise .7s ease both}
 </script>
 
 
-<div class="group-ln-credit">
-  Developed by <strong>Group LN</strong>
-</div>
+
 
 </body></html>
