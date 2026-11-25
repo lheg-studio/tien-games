@@ -47,7 +47,54 @@ main>*{animation:tg-rise .7s ease both}
 .dev-card p{margin-bottom:0}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
-</style></head><body><header><nav><a class="brand" translate="no" href="index.html">♛ TIEN <span>GAMES</span></a>
+</style>
+<style id="group-ln-style">
+.group-ln-credit {
+  display:block;
+  width:fit-content;
+  margin:12px auto;
+  padding:6px 12px;
+  color:#91baff;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:1.2px;
+  text-align:center;
+  opacity:.78;
+}
+.group-ln-credit strong {
+  color:#fff;
+  font-weight:700;
+}
+.group-ln-welcome {
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  background:radial-gradient(circle at center,#102b55,#050914 70%);
+  color:white;
+  animation:lnFadeOut 1s ease 2s forwards;
+  pointer-events:none;
+}
+.group-ln-welcome h2 {
+  margin:0;
+  font-size:clamp(26px,7vw,48px);
+  letter-spacing:3px;
+}
+.group-ln-welcome p {
+  color:#91baff;
+  font-size:11px;
+  letter-spacing:2px;
+}
+@keyframes lnFadeOut {
+  to { opacity:0; visibility:hidden; }
+}
+</style>
+
+</head><body><header><nav><a class="brand" translate="no" href="index.html">♛ TIEN <span>GAMES</span></a>
     <div class="navlinks"><a href="index.html#juegos">Juegos</a><a href="index.html#novedades">Novedades</a><a href="index.html#contacto">Contacto</a><a href="privacidad.html">Privacidad</a></div></nav></header><main><a class="back" href="index.html">← Volver a TIEN GAMES</a><section class="card">
 <h1>Política de privacidad</h1><p><b>Última actualización: 18 de noviembre de 2026.</b></p>
 <h2>1. Información que podemos solicitar</h2><p>Al gestionar un pedido, TIEN GAMES puede solicitar nombre y apellido, correo electrónico e ID del jugador, según el producto solicitado.</p>
@@ -79,5 +126,10 @@ main>*{animation:tg-rise .7s ease both}
   items.forEach(el => observer.observe(el));
 })();
 </script>
+
+
+<div class="group-ln-credit">
+  Developed by <strong>Group LN</strong>
+</div>
 
 </body></html>
