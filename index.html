@@ -47,74 +47,49 @@ main>*{animation:tg-rise .7s ease both}
 .dev-card p{margin-bottom:0}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
-</style>
-<style id="tien-presencia-global">
-.tg-top-promo {
-  padding: 13px 16px;
-  text-align: center;
-  color: #fff;
-  font-weight: 800;
-  background: linear-gradient(100deg,#063b83,#087fe8,#063b83);
-  background-size: 200% 100%;
-  animation: tgFlow 5s linear infinite;
-}
-.tg-top-promo span { color: #9de7ff; }
-.tg-section-mark {
-  margin: 14px 0;
-  padding: 11px 13px;
-  border: 1px solid #168bff55;
-  border-radius: 12px;
-  background: linear-gradient(100deg,#09244a,#101d35);
-  color: #d9eaff;
-  font-size: 12px;
-  text-align: center;
-}
-.tg-section-mark strong { color: #55c7ff; }
-.tg-bottom-credits {
-  padding: 30px 15px;
-  text-align: center;
-  background: #061326;
-  border-top: 1px solid #168bff66;
-  color: #b9cce3;
-}
-.tg-bottom-credits strong {
-  display: block;
-  color: #61c8ff;
-  font-size: 19px;
-  letter-spacing: 2px;
-  margin: 10px;
-}
-@keyframes tgFlow {
-  to { background-position: 200% 0; }
-}
-</style>
 
-</head><body>
+/* GROUP LN · Intro de entrada para la página principal */
+.group-ln-splash{
+  position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+  padding:24px;background:radial-gradient(circle at 50% 42%,#142b62 0%,#08091b 48%,#03040c 100%);
+  opacity:1;visibility:visible;transition:opacity .65s ease,visibility .65s ease;
+}
+.group-ln-splash.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
+.group-ln-splash-inner{text-align:center;animation:ln-enter .85s cubic-bezier(.2,.8,.2,1) both}
+.group-ln-mark{
+  width:62px;height:62px;margin:0 auto 19px;border:1px solid #19d9ff88;border-radius:19px;
+  display:grid;place-items:center;color:#19d9ff;font-size:1.35rem;font-weight:1000;
+  box-shadow:0 0 34px #00bfff30,inset 0 0 22px #00bfff12;
+}
+.group-ln-overline{color:#8fa9d8;font-size:.68rem;font-weight:850;letter-spacing:4px;text-transform:uppercase}
+.group-ln-name{margin:9px 0 0;color:#fff;font-size:clamp(1.55rem,6vw,2.2rem);font-weight:950;letter-spacing:1px}
+.group-ln-name span{color:#19d9ff}
+.group-ln-loading{width:118px;height:2px;margin:23px auto 0;background:#ffffff20;overflow:hidden;border-radius:9px}
+.group-ln-loading:after{content:"";display:block;width:45%;height:100%;background:#19d9ff;box-shadow:0 0 12px #19d9ff;animation:ln-load 1.25s ease-in-out infinite}
+.group-ln-credit{color:#8494b9;font-size:.75rem;letter-spacing:.5px;margin-top:13px}
+footer .group-ln-footer{display:block;margin-top:9px;color:#7f91b8;font-size:.72rem;letter-spacing:.35px}
+@keyframes ln-enter{from{opacity:0;transform:translateY(13px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes ln-load{from{transform:translateX(-110%)}to{transform:translateX(245%)}}
+@media(prefers-reduced-motion:reduce){
+ .group-ln-splash,.group-ln-splash-inner,.group-ln-loading:after{animation:none!important;transition:none!important}
+}
 
+</style></head><body>
 
+<div class="group-ln-splash" id="groupLnSplash" aria-label="Developed by Group LN">
+  <div class="group-ln-splash-inner">
+    <div class="group-ln-mark" aria-hidden="true">LN</div>
+    <div class="group-ln-overline">A technology group</div>
+    <div class="group-ln-name">Developed by <span>Group LN</span></div>
+    <div class="group-ln-loading" aria-hidden="true"></div>
+    <div class="group-ln-credit">TIEN GAMES · Official experience</div>
+  </div>
+</div>
 <header><nav><a class="brand" translate="no" href="index.html">♛ TIEN <span>GAMES</span></a>
-    <div class="navlinks"><a href="index.html#juegos">Juegos</a><a href="index.html#novedades">Novedades</a><a href="index.html#contacto">Contacto</a><a href="privacidad.html">Privacidad</a></div></nav></header><main><section class="hero">
-
-<div class="tg-section-mark">
-  <strong>LHEG STUDIO × NOVEX STUDIO</strong>
-  <br>Desarrollo de la plataforma TIEN GAMES
-</div>
-<div><div class="kicker">Tu tienda digital</div><h1>RECARGA.<br><span>JUEGA.</span><br>DISFRUTA.</h1><p>Encuentra recargas y productos digitales para tus videojuegos favoritos. Elige tu juego y consulta tu pedido por WhatsApp.</p><a class="cta" href="#juegos">⚡ VER LOS JUEGOS</a></div></section>
-<section id="juegos">
-
-<div class="tg-section-mark">
-  <strong>LHEG STUDIO × NOVEX STUDIO</strong>
-  <br>Desarrollo de la plataforma TIEN GAMES
-</div>
-<div class="section-title"><h2>🎮 Elige tu juego</h2><p>Entra en cada apartado para ver sus paquetes y precios.</p></div><div class="games"><article class="game" style="--accent:#d94cff"><h3>FREE FIRE</h3><div class="sub">💎 Diamantes</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="free-fire.html">VER PAQUETES →</a></article><article class="game" style="--accent:#ff4545"><h3>BLOOD STRIKE</h3><div class="sub">🪙 Oros</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="blood-strike.html">VER PAQUETES →</a></article><article class="game" style="--accent:#ffd51e"><h3>PUBG MOBILE</h3><div class="sub">🪙 UC</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="pubg-mobile.html">VER PAQUETES →</a></article><article class="game" style="--accent:#19cfff"><h3>ROBLOX</h3><div class="sub">💠 Robux / tarjetas digitales</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="roblox.html">VER PAQUETES →</a></article></div></section>
+    <div class="navlinks"><a href="index.html#juegos">Juegos</a><a href="index.html#novedades">Novedades</a><a href="index.html#contacto">Contacto</a><a href="privacidad.html">Privacidad</a></div></nav></header><main><section class="hero"><div><div class="kicker">Tu tienda digital</div><h1>RECARGA.<br><span>JUEGA.</span><br>DISFRUTA.</h1><p>Encuentra recargas y productos digitales para tus videojuegos favoritos. Elige tu juego y consulta tu pedido por WhatsApp.</p><a class="cta" href="#juegos">⚡ VER LOS JUEGOS</a></div><img class="poster" src="assets/tien-games-poster.jpg" alt="Promociones de TIEN GAMES"></section>
+<section id="juegos"><div class="section-title"><h2>🎮 Elige tu juego</h2><p>Entra en cada apartado para ver sus paquetes y precios.</p></div><div class="games"><article class="game" style="--accent:#d94cff"><h3>FREE FIRE</h3><div class="sub">💎 Diamantes</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="free-fire.html">VER PAQUETES →</a></article><article class="game" style="--accent:#ff4545"><h3>BLOOD STRIKE</h3><div class="sub">🪙 Oros</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="blood-strike.html">VER PAQUETES →</a></article><article class="game" style="--accent:#ffd51e"><h3>PUBG MOBILE</h3><div class="sub">🪙 UC</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="pubg-mobile.html">VER PAQUETES →</a></article><article class="game" style="--accent:#19cfff"><h3>ROBLOX</h3><div class="sub">💠 Robux / tarjetas digitales</div><p>Consulta los paquetes disponibles y realiza tu pedido desde la página de este juego.</p><a class="button" href="roblox.html">VER PAQUETES →</a></article></div></section>
 
 <section id="novedades" style="margin-top:48px">
-
-<div class="tg-section-mark">
-  <strong>LHEG STUDIO × NOVEX STUDIO</strong>
-  <br>Desarrollo de la plataforma TIEN GAMES
-</div>
-
   <div class="section-title"><h2>Más de TIEN GAMES</h2><p>Estamos preparando nuevas funciones para mejorar tu experiencia.</p></div>
   <div class="games">
     <article class="dev-card"><span class="dev-label">EN DESARROLLO</span><h3>Historial de pedidos</h3><p>Un espacio para consultar el estado de tus compras y pedidos anteriores.</p></article>
@@ -125,13 +100,7 @@ main>*{animation:tg-rise .7s ease both}
   <p style="text-align:center;font-weight:900;color:#19d9ff;margin-top:20px">TIEN GAMES ESTÁ EN DESARROLLO. ¡Seguimos trabajando para ofrecerte más!</p>
 </section>
 
-<section class="card" id="contacto" style="text-align:center">
-
-<div class="tg-section-mark">
-  <strong>LHEG STUDIO × NOVEX STUDIO</strong>
-  <br>Desarrollo de la plataforma TIEN GAMES
-</div>
-<h2>¿Necesitas ayuda?</h2><p>Escríbenos para consultar disponibilidad, pagos o el estado de tu pedido.</p><a class="cta" href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">CONTACTAR POR WHATSAPP</a></section></main><footer><div class="footlinks"><a href="privacidad.html">Política de privacidad</a><a href="terminos.html">Términos y condiciones</a><a href="reembolsos.html">Reembolsos</a><a href="index.html#contacto">Contacto</a></div>© <span class="year"></span> TIEN GAMES · Tu tienda digital</footer>
+<section class="card" id="contacto" style="text-align:center"><h2>¿Necesitas ayuda?</h2><p>Escríbenos para consultar disponibilidad, pagos o el estado de tu pedido.</p><a class="cta" href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">CONTACTAR POR WHATSAPP</a></section></main><footer><div class="footlinks"><a href="privacidad.html">Política de privacidad</a><a href="terminos.html">Términos y condiciones</a><a href="reembolsos.html">Reembolsos</a><a href="index.html#contacto">Contacto</a></div>© <span class="year"></span> TIEN GAMES · Tu tienda digital<span class="group-ln-footer">Developed by Group LN</span></footer>
 <script>document.querySelectorAll(".year").forEach(e=>e.textContent=new Date().getFullYear());</script><a class="float-wa" href="https://wa.me/595993420918?text=Hola%20TIEN%20GAMES%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">WhatsApp</a>
 <script>
 (() => {
@@ -149,64 +118,14 @@ main>*{animation:tg-rise .7s ease both}
 </script>
 
 
-<style>
-#tien-sorteo-6160 {
-  margin: 35px auto;
-  padding: 30px 20px;
-  max-width: 1050px;
-  text-align: center;
-  color: white;
-  border: 1px solid #168bff;
-  border-radius: 22px;
-  background: radial-gradient(circle at top, #123d79, #071326 70%);
-  box-shadow: 0 0 25px #087bff55;
-  animation: tienGlow 3s ease-in-out infinite alternate;
-}
-#tien-sorteo-6160 h2 {
-  font-size: clamp(25px, 5vw, 42px);
-  margin: 12px 0;
-  color: #55c7ff;
-}
-#tien-sorteo-6160 .premio {
-  font-size: clamp(28px, 6vw, 48px);
-  font-weight: 900;
-  color: #fff;
-  text-shadow: 0 0 18px #168bff;
-}
-#tien-sorteo-6160 p { line-height: 1.7; }
-#tien-sorteo-6160 .sorteo-etiqueta {
-  color: #72d6ff;
-  font-weight: 800;
-  letter-spacing: 3px;
-}
-@keyframes tienGlow {
-  from { box-shadow: 0 0 12px #087bff44; }
-  to { box-shadow: 0 0 32px #087bff99; }
-}
-.tien-creditos {
-  padding: 25px 12px;
-  text-align: center;
-  color: #aebed4;
-  font-size: 13px;
-  border-top: 1px solid #ffffff20;
-}
-.tien-creditos strong { color: #59bfff; }
-</style>
-
-
-
-<footer class="tien-creditos">
-  <p>Plataforma desarrollada conjuntamente por</p>
-  <strong>LHEG STUDIO × NOVEX STUDIO</strong>
-  <p>TIEN GAMES · RECARGA. JUEGA. DISFRUTA.</p>
-</footer>
-
-
-<div class="tg-bottom-credits">
-  DESARROLLO Y TECNOLOGÍA
-  <strong>LHEG STUDIO × NOVEX STUDIO</strong>
-  Dos estudios. Un mismo proyecto.
-  <p>TIEN GAMES · RECARGA. JUEGA. DISFRUTA.</p>
-</div>
+<script>
+(() => {
+  const splash = document.getElementById('groupLnSplash');
+  if (!splash) return;
+  const hideSplash = () => splash.classList.add('is-leaving');
+  window.setTimeout(hideSplash, 1850);
+  splash.addEventListener('click', hideSplash, { once: true });
+})();
+</script>
 
 </body></html>
