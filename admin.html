@@ -21,6 +21,9 @@ input,select{background:#090e20;color:white}
 button{background:#1769e0;color:white;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.6;cursor:wait}
 .hidden{display:none!important}
+.admin-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.admin-tabs button{margin:0}
+.admin-tabs button.active{background:#284b83;border-color:#65a5ff}
 .top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .top button{width:auto;min-width:130px}
 .order{padding:17px 0;border-bottom:1px solid #303956}
@@ -61,6 +64,12 @@ button:disabled{opacity:.6;cursor:wait}
 <p id="adminMessage" class="muted"></p>
 </div>
 
+<nav class="admin-tabs" aria-label="Secciones administrativas">
+  <button id="ordersTabButton" class="active" type="button">PEDIDOS</button>
+  <button id="productsTabButton" type="button">PRODUCTOS</button>
+</nav>
+
+<section id="ordersTab">
 <div class="card">
 <div class="top">
 <h2>Pedidos registrados</h2>
@@ -71,6 +80,9 @@ button:disabled{opacity:.6;cursor:wait}
 <div id="orders">Cargando pedidos...</div>
 </div>
 
+</section>
+
+<section id="productsTab" class="hidden">
 <div class="card" id="productsModule">
   <div class="top">
     <div>
@@ -109,6 +121,7 @@ button:disabled{opacity:.6;cursor:wait}
   <p id="productCount" class="muted small"></p>
   <div id="productsList">Cargando productos...</div>
 </div>
+</section>
 </section>
 </main>
 
@@ -460,6 +473,24 @@ document.getElementById("cancelProductEdit").addEventListener("click", () => {
 });
 
 document.getElementById("refreshProducts").addEventListener("click", loadProducts);
+
+const ordersTab = document.getElementById("ordersTab");
+const productsTab = document.getElementById("productsTab");
+const ordersTabButton = document.getElementById("ordersTabButton");
+const productsTabButton = document.getElementById("productsTabButton");
+
+function showAdminTab(tab){
+  const showOrders = tab === "orders";
+
+  ordersTab.classList.toggle("hidden", !showOrders);
+  productsTab.classList.toggle("hidden", showOrders);
+
+  ordersTabButton.classList.toggle("active", showOrders);
+  productsTabButton.classList.toggle("active", !showOrders);
+}
+
+ordersTabButton.addEventListener("click", () => showAdminTab("orders"));
+productsTabButton.addEventListener("click", () => showAdminTab("products"));
 
 (async()=>{
   if(!db){
