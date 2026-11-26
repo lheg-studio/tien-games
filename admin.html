@@ -70,6 +70,45 @@ button:disabled{opacity:.6;cursor:wait}
 <p id="count" class="muted small"></p>
 <div id="orders">Cargando pedidos...</div>
 </div>
+
+<div class="card" id="productsModule">
+  <div class="top">
+    <div>
+      <h2>Gestión de productos</h2>
+      <p class="muted small">Administrá los paquetes y sus precios.</p>
+    </div>
+    <button id="refreshProducts" type="button">Actualizar productos</button>
+  </div>
+
+  <form id="productForm">
+    <input id="productId" type="hidden">
+
+    <label for="productGame">Juego</label>
+    <select id="productGame" required>
+      <option value="free-fire">Free Fire</option>
+      <option value="blood-strike">Blood Strike</option>
+      <option value="pubg-mobile">PUBG Mobile</option>
+      <option value="roblox">Roblox</option>
+    </select>
+
+    <label for="productName">Nombre del paquete</label>
+    <input id="productName" maxlength="100" required
+      placeholder="Ej.: 110 diamantes">
+
+    <label for="productPrice">Precio en guaraníes</label>
+    <input id="productPrice" type="number" min="1" step="1"
+      required placeholder="Ej.: 7200">
+
+    <button id="saveProduct" type="submit">Agregar producto</button>
+    <button id="cancelProductEdit" type="button" class="hidden">
+      Cancelar edición
+    </button>
+  </form>
+
+  <p id="productMessage" class="muted small"></p>
+  <p id="productCount" class="muted small"></p>
+  <div id="productsList">Cargando productos...</div>
+</div>
 </section>
 </main>
 
@@ -175,6 +214,7 @@ async function showDashboard(){
   login.classList.add("hidden");
   dashboard.classList.remove("hidden");
   await loadOrders();
+  await loadProducts();
 }
 
 document.getElementById("loginForm").addEventListener("submit",async e=>{
@@ -250,6 +290,176 @@ area.addEventListener("click",async e=>{
   result.className = "small success";
   await loadOrders();
 });
+
+const productForm = document.getElementById("productForm");
+const productMessage = document.getElementById("productMessage");
+const productsList = document.getElementById("productsList");
+const productCount = document.getElementById("productCount");
+const saveProduct = document.getElementById("saveProduct");
+
+let products = [];
+
+function showProductMessage(text, type="muted"){
+  productMessage.textContent = text;
+  productMessage.className = "small " + type;
+}
+
+function renderProducts(){
+  const sorted = [...products].sort((a,b) =>
+    a.juego.localeCompare(b.juego) || a.paquete.localeCompare(b.paquete)
+  );
+
+  productCount.textContent = `${products.length} producto(s) registrados`;
+
+  if(!sorted.length){
+    productsList.textContent = "Todavía no hay productos.";
+    return;
+  }
+
+  productsList.innerHTML = sorted.map(p => `
+    <article class="order">
+      <p><strong>${escapeText(p.juego.toUpperCase())}</strong></p>
+      <p>${escapeText(p.paquete)}</p>
+      <p><strong>Gs. ${Number(p.precio).toLocaleString("es-PY")}</strong></p>
+      <p class="status">${p.activo ? "ACTIVO" : "DESACTIVADO"}</p>
+      <button type="button" data-edit-product="${escapeText(p.id)}">
+        Editar
+      </button>
+      <button type="button" data-toggle-product="${escapeText(p.id)}">
+        ${p.activo ? "Desactivar" : "Activar"}
+      </button>
+    </article>
+  `).join("");
+}
+
+async function loadProducts(){
+  productsList.textContent = "Cargando productos...";
+  document.getElementById("refreshProducts").disabled = true;
+
+  const {data,error} = await db
+    .from("productos")
+    .select("id,juego,paquete,precio,activo,created_at")
+    .order("juego")
+    .order("paquete");
+
+  document.getElementById("refreshProducts").disabled = false;
+
+  if(error){
+    productsList.textContent = "No se pudieron cargar los productos. Verificá los permisos de Supabase.";
+    console.error("Error al cargar productos:", error);
+    return;
+  }
+
+  products = data || [];
+  renderProducts();
+}
+
+function resetProductForm(){
+  productForm.reset();
+  document.getElementById("productId").value = "";
+  document.getElementById("saveProduct").textContent = "Agregar producto";
+  document.getElementById("cancelProductEdit").classList.add("hidden");
+}
+
+productForm.addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const id = document.getElementById("productId").value;
+  const juego = document.getElementById("productGame").value;
+  const paquete = document.getElementById("productName").value.trim();
+  const precio = Number(document.getElementById("productPrice").value);
+
+  if(!["free-fire","blood-strike","pubg-mobile","roblox"].includes(juego)){
+    showProductMessage("Seleccioná un juego válido.", "error");
+    return;
+  }
+
+  if(!paquete || paquete.length > 100 || !Number.isSafeInteger(precio) || precio <= 0){
+    showProductMessage("Ingresá un paquete y un precio válido.", "error");
+    return;
+  }
+
+  saveProduct.disabled = true;
+  showProductMessage("Guardando producto...");
+
+  const payload = {juego, paquete, precio};
+
+  const result = id
+    ? await db.from("productos").update(payload).eq("id",id)
+    : await db.from("productos").insert({...payload,activo:true});
+
+  saveProduct.disabled = false;
+
+  if(result.error){
+    console.error("Error al guardar producto:", result.error);
+    showProductMessage(
+      result.error.code === "23505"
+        ? "Ese paquete ya existe para este juego."
+        : "No se pudo guardar. Revisá los permisos y los datos.",
+      "error"
+    );
+    return;
+  }
+
+  resetProductForm();
+  showProductMessage("Producto guardado correctamente.", "success");
+  await loadProducts();
+});
+
+productsList.addEventListener("click", async e => {
+  const editButton = e.target.closest("[data-edit-product]");
+  const toggleButton = e.target.closest("[data-toggle-product]");
+
+  if(editButton){
+    const product = products.find(p => p.id === editButton.dataset.editProduct);
+    if(!product) return;
+
+    document.getElementById("productId").value = product.id;
+    document.getElementById("productGame").value = product.juego;
+    document.getElementById("productName").value = product.paquete;
+    document.getElementById("productPrice").value = product.precio;
+    saveProduct.textContent = "Guardar cambios";
+    document.getElementById("cancelProductEdit").classList.remove("hidden");
+    showProductMessage("Editando producto: " + product.paquete);
+    productForm.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+
+  if(toggleButton){
+    const product = products.find(p => p.id === toggleButton.dataset.toggleProduct);
+    if(!product) return;
+
+    const nextState = !product.activo;
+    const action = nextState ? "activar" : "desactivar";
+
+    if(!confirm(`¿Querés ${action} ${product.paquete}?`)) return;
+
+    toggleButton.disabled = true;
+
+    const {error} = await db
+      .from("productos")
+      .update({activo:nextState})
+      .eq("id",product.id);
+
+    toggleButton.disabled = false;
+
+    if(error){
+      console.error("Error al cambiar estado:", error);
+      showProductMessage("No se pudo cambiar el estado del producto.", "error");
+      return;
+    }
+
+    showProductMessage("Estado del producto actualizado.", "success");
+    await loadProducts();
+  }
+});
+
+document.getElementById("cancelProductEdit").addEventListener("click", () => {
+  resetProductForm();
+  showProductMessage("Edición cancelada.");
+});
+
+document.getElementById("refreshProducts").addEventListener("click", loadProducts);
 
 (async()=>{
   if(!db){
