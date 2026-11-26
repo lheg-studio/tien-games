@@ -1,0 +1,2 @@
+[functions.registrar-pedido]
+verify_jwt = false
