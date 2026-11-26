@@ -1,6 +1,13 @@
 name: Desplegar función de pedidos
 
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'supabase/functions/registrar-pedido/**'
+      - 'supabase/config.toml'
+      - '.github/workflows/desplegar-supabase.yml'
   workflow_dispatch:
 
 permissions:
