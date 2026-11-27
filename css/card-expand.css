@@ -1,0 +1,7 @@
+.tg-grow{position:fixed;z-index:99999;display:grid;place-items:center;border-radius:19px;border:1px solid var(--ac);background:radial-gradient(120% 80% at 70% 20%,color-mix(in srgb,var(--ac),#0a0c1f 82%),#070818 62%);transition:top .5s cubic-bezier(.7,.05,.2,1),left .5s cubic-bezier(.7,.05,.2,1),width .5s cubic-bezier(.7,.05,.2,1),height .5s cubic-bezier(.7,.05,.2,1),border-radius .5s}
+.tg-grow strong{font:900 clamp(1.8rem,9vw,3rem) Orbitron,"Arial Black",system-ui,sans-serif;letter-spacing:3px;color:#fff;text-shadow:0 0 22px var(--ac);opacity:0;transition:opacity .35s .15s}
+.tg-grow.go{top:0!important;left:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;border-radius:0}
+.tg-grow.go strong{opacity:1}
+.catalog-banner,.catalog-banner + .card{animation:tg-zoomin .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes tg-zoomin{from{opacity:0;transform:scale(.92)}}
+@media(prefers-reduced-motion:reduce){.tg-grow{display:none}.catalog-banner,.catalog-banner + .card{animation:none}}

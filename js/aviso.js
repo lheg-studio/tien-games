@@ -9,7 +9,7 @@ document.head.appendChild(s);
 var a=document.createElement("div");
 a.className="tg-aviso";a.setAttribute("role","status");
 a.innerHTML='<b>⚠️</b><span></span><button type="button" aria-label="Cerrar aviso">×</button>';
-a.querySelector("span").textContent="Hoy 27 de noviembre estamos actualizando la página. Puedes notar errores visuales, lentitud o fallos del servidor. Gracias por tu paciencia.";
+a.querySelector("span").textContent="Estamos actualizando la página. Puede presentar errores visuales, lentitud o fallos del servidor.";
 a.querySelector("button").addEventListener("click",function(){a.remove();try{sessionStorage.setItem("tg-aviso","1")}catch(e){}});
 function put(){document.body.insertBefore(a,document.body.firstChild)}
 if(document.body)put();else document.addEventListener("DOMContentLoaded",put);
