@@ -1,0 +1,28 @@
+body{background:radial-gradient(70% 40% at 50% -5%,rgba(31,107,255,.45),transparent 70%),radial-gradient(40% 30% at 100% 35%,rgba(139,92,255,.18),transparent 70%),linear-gradient(180deg,#040817,#050a1c 60%,#03050f)}
+header{background:rgba(4,8,23,.96);border-bottom:1px solid rgba(31,107,255,.35);box-shadow:0 8px 30px rgba(0,20,80,.45)}
+.brand{font-size:1.5rem;letter-spacing:2px}
+.navlinks{gap:8px}
+.navlinks a{padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);font-size:.82rem;transition:background .2s,border-color .2s,transform .2s}
+.navlinks a:hover,.navlinks a:active{background:rgba(31,107,255,.28);border-color:#19d9ff;transform:translateY(-1px)}
+.hero{position:relative}
+.hero::before{content:"";position:absolute;inset:-10% -10% auto -10%;height:75%;background:radial-gradient(50% 60% at 30% 40%,rgba(31,107,255,.35),transparent 70%);pointer-events:none;z-index:-1}
+.kicker{display:inline-block;padding:6px 14px;border:1px solid rgba(25,217,255,.4);border-radius:99px;background:rgba(25,217,255,.08)}
+.poster{border-radius:26px;border:1px solid rgba(25,217,255,.45);box-shadow:0 0 40px rgba(31,107,255,.45)}
+.cta,.button{position:relative;overflow:hidden;border-radius:99px;padding:14px 24px;background:linear-gradient(100deg,#19d9ff,#1f6bff 55%,#6a4dff);box-shadow:0 8px 24px rgba(31,107,255,.45);letter-spacing:.5px;transition:transform .2s,filter .2s}
+.cta::after,.button::after{content:"";position:absolute;top:0;bottom:0;left:-80%;width:50%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s ease;pointer-events:none}
+.cta:hover::after,.button:hover::after{left:140%}
+.section-title h2{font-size:2.1rem;letter-spacing:1px}
+.section-title h2::after{content:"";display:block;width:64px;height:3px;margin:10px auto 0;border-radius:3px;background:linear-gradient(90deg,#19d9ff,#8b5cff)}
+.games{gap:18px}
+.game{min-height:230px;padding:26px 24px;border-radius:26px;background:radial-gradient(90% 70% at 100% 0%,color-mix(in srgb,var(--accent),transparent 62%),transparent 70%),linear-gradient(160deg,#10163a,#070a1c);border:1px solid color-mix(in srgb,var(--accent),transparent 45%);box-shadow:0 14px 36px rgba(0,0,0,.45),0 0 30px color-mix(in srgb,var(--accent),transparent 85%);transition:transform .25s,box-shadow .25s,border-color .25s}
+.game h3{font-size:1.9rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.game .sub{display:inline-block;padding:4px 12px;border-radius:99px;background:color-mix(in srgb,var(--accent),transparent 82%);color:#fff;font-weight:700;font-size:.82rem}
+.game:hover,.game:active{transform:translateY(-6px) scale(1.01);border-color:var(--accent);box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 38px color-mix(in srgb,var(--accent),transparent 65%)}
+.card{border-radius:24px;border-color:rgba(31,107,255,.4);background:linear-gradient(160deg,#0f1737,#090d22)}
+.dev-card{border-radius:22px}
+footer{background:#03060f;border-top:1px solid rgba(31,107,255,.35);padding:30px 16px}
+footer .footlinks a{padding:6px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.08)}
+footer .footlinks a:hover{color:#19d9ff}
+.float-wa{bottom:16px;right:16px;padding:14px 20px;box-shadow:0 8px 26px rgba(32,201,103,.45)}
+@media(max-width:700px){.navlinks{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:4px;scrollbar-width:none}.navlinks::-webkit-scrollbar{display:none}.navlinks a{white-space:nowrap}.game{min-height:200px}.cta{display:block;text-align:center}}
+@media(prefers-reduced-motion:reduce){.game,.navlinks a,.cta,.button,.cta::after,.button::after{transition:none}}
