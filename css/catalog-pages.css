@@ -1,0 +1,19 @@
+.tg-shelf{position:relative;margin:18px 0 8px;border:1px solid color-mix(in srgb,var(--accent,#19d9ff),transparent 55%);border-radius:6px 20px 20px 6px;background:linear-gradient(160deg,#151b38,#0c1024);box-shadow:inset 26px 0 24px -22px rgba(0,0,0,.8),0 14px 30px rgba(0,0,0,.35);overflow:hidden}
+.tg-shelf::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;z-index:1;background:linear-gradient(180deg,var(--accent,#19d9ff),rgba(0,0,0,.4))}
+.tg-pages{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;outline:none}
+.tg-pages::-webkit-scrollbar{display:none}
+.tg-page{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;padding:12px 20px 8px 30px;will-change:transform}
+.tg-page .pack{opacity:1!important;transform:none!important;padding:22px 0}
+.tg-folio{padding:14px 0 6px;text-align:center;color:#8390b2;font:700 .72rem system-ui,sans-serif;letter-spacing:2px}
+.tg-hint{text-align:center;color:#8390b2;font:600 .75rem system-ui,sans-serif;padding:0 0 4px}
+.tg-hint.gone{display:none}
+.tg-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 14px 14px 24px}
+.tg-nav button{font-family:inherit}
+.tg-prev,.tg-next{width:44px;height:44px;border-radius:50%;border:1px solid color-mix(in srgb,var(--accent,#19d9ff),transparent 45%);background:rgba(255,255,255,.05);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;transition:transform .2s,opacity .2s}
+.tg-prev:active,.tg-next:active{transform:scale(.92)}
+.tg-prev:disabled,.tg-next:disabled{opacity:.3;cursor:default}
+.tg-dots{display:flex;gap:8px;align-items:center}
+.tg-dot{width:10px;height:10px;padding:0;border:0;border-radius:99px;background:rgba(255,255,255,.28);cursor:pointer;transition:width .25s,background .25s}
+.tg-dot.is-on{width:26px;background:var(--accent,#19d9ff)}
+.tg-shelf.single .tg-nav,.tg-shelf.single .tg-hint{display:none}
+@media(prefers-reduced-motion:reduce){.tg-page{will-change:auto}}
