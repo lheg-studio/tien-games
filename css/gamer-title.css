@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&display=swap');
+.hero h1{font-family:"Orbitron","Arial Black",system-ui,sans-serif;font-style:normal;font-weight:900;font-size:clamp(2rem,7vw,3.6rem);line-height:1.08;letter-spacing:3px;text-transform:uppercase;margin:14px 0 20px;padding-left:16px;border-left:4px solid #19d9ff;color:#fff;filter:drop-shadow(0 0 14px rgba(25,217,255,.35));animation:tg-glitch .7s steps(1,end) 1 both}
+.hero h1 span{color:#19d9ff;text-shadow:0 0 18px #00bfff,0 0 38px rgba(0,191,255,.55)}
+.hero h1{background:linear-gradient(90deg,#fff 0,#fff 100%);-webkit-background-clip:text;background-clip:text}
+@keyframes tg-glitch{0%{transform:translateX(-8px) skewX(-8deg);opacity:0}25%{transform:translateX(5px) skewX(5deg);opacity:1}45%{transform:translateX(-4px) skewX(-3deg)}65%{transform:translateX(2px)}100%{transform:none}}
+@media(prefers-reduced-motion:reduce){.hero h1{animation:none}}
