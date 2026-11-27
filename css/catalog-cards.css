@@ -17,3 +17,8 @@
 .tg-shelf .tg-nav{padding:4px 4px 10px}
 .tg-shelf .tg-prev,.tg-shelf .tg-next{border-color:var(--accent,#19d9ff);box-shadow:0 0 14px color-mix(in srgb,var(--accent,#19d9ff),transparent 75%)}
 @media(prefers-reduced-motion:reduce){.tg-shelf .tg-page .pack,.tg-shelf .tg-page .pack::after,.tg-shelf .tg-page .pack>a{transition:none}}
+html:not(.tg-nofix) .catalog-banner + .card > .pack{display:none}
+html:not(.tg-nofix) .catalog-banner + .card:not(:has(.tg-shelf))::after{content:"Cargando paquetes…";display:block;text-align:center;color:#8390b2;padding:34px 0;font:600 .85rem system-ui,sans-serif}
+@keyframes tg-shelf-in{from{opacity:0;transform:scale(.9)}}
+.tg-shelf{animation:tg-shelf-in .6s cubic-bezier(.2,.8,.2,1) both}
+@media(prefers-reduced-motion:reduce){.tg-shelf{animation:none}}
