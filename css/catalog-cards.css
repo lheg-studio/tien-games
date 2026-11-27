@@ -22,3 +22,8 @@ html:not(.tg-nofix) .catalog-banner + .card:not(:has(.tg-shelf))::after{content:
 @keyframes tg-shelf-in{from{opacity:0;transform:scale(.9)}}
 .tg-shelf{animation:tg-shelf-in .6s cubic-bezier(.2,.8,.2,1) both}
 @media(prefers-reduced-motion:reduce){.tg-shelf{animation:none}}
+main > .dev-card{display:none}
+@keyframes tg-pop{from{scale:.82;translate:0 18px;filter:brightness(1.7)}}
+.tg-shelf .tg-page .pack{animation:tg-pop .6s cubic-bezier(.2,.9,.3,1.15) both}
+.tg-shelf .tg-page .pack:nth-child(2){animation-delay:.12s}
+@media(prefers-reduced-motion:reduce){.tg-shelf .tg-page .pack{animation:none}}
