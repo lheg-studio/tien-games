@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&display=swap');
+html.tg-lock{overflow:hidden}
+.tg-book{position:fixed;inset:0;z-index:99999;perspective:1700px;overflow:hidden}
+.tg-cover{position:absolute;inset:0;transform-origin:left center;transition:transform 1.15s cubic-bezier(.7,.05,.2,1),box-shadow 1.15s;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:radial-gradient(120% 80% at 70% 20%,color-mix(in srgb,var(--ac),#0a0c1f 82%),#070818 62%);cursor:pointer;display:grid;place-items:center;padding:28px 28px 28px 46px}
+.tg-spine{position:absolute;left:0;top:0;bottom:0;width:26px;background:linear-gradient(90deg,rgba(0,0,0,.6),var(--ac) 45%,rgba(0,0,0,.6))}
+.tg-face{position:relative;width:min(520px,100%);text-align:center;padding:40px 22px;border:1px solid color-mix(in srgb,var(--ac),transparent 40%);border-radius:10px;box-shadow:0 0 0 8px rgba(255,255,255,.04),inset 0 0 40px color-mix(in srgb,var(--ac),transparent 85%)}
+.tg-face small{display:block;color:#aeb8d5;font:700 .72rem system-ui,sans-serif;letter-spacing:3px}
+.tg-face strong{display:block;margin:18px 0 10px;font:900 clamp(2rem,10vw,3.4rem)/1.05 Orbitron,"Arial Black",sans-serif;letter-spacing:3px;color:#fff;text-shadow:0 0 22px var(--ac),0 0 46px color-mix(in srgb,var(--ac),transparent 50%)}
+.tg-face span{display:block;color:var(--ac);font:800 .78rem system-ui,sans-serif;letter-spacing:2px}
+.tg-face i{display:block;width:70px;height:2px;margin:22px auto;background:var(--ac);box-shadow:0 0 14px var(--ac)}
+.tg-face button{font:900 .82rem system-ui,sans-serif;letter-spacing:2px;color:#fff;background:transparent;border:1px solid var(--ac);border-radius:30px;padding:12px 22px;cursor:pointer;animation:tg-hint 1.6s ease-in-out infinite}
+@keyframes tg-hint{50%{box-shadow:0 0 18px var(--ac)}}
+.tg-book.open{pointer-events:none}
+.tg-book.open .tg-cover{transform:rotateY(-170deg);box-shadow:40px 0 80px rgba(0,0,0,.65)}
+.catalog-banner + .card{border-left:6px solid var(--accent,#19d9ff);border-radius:6px 22px 22px 6px;box-shadow:inset 22px 0 26px -20px rgba(0,0,0,.75),0 14px 34px rgba(0,0,0,.4)}
+.tg-opened .catalog-banner + .card{transform-origin:left center;animation:tg-page .9s .35s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes tg-page{from{transform:perspective(1300px) rotateY(-28deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){.tg-book{display:none}.tg-opened .catalog-banner + .card{animation:none}}
