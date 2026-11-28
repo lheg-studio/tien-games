@@ -1,0 +1,71 @@
+<!doctype html><html lang="es" translate="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08091b"><title>Mi cuenta | TIEN GAMES</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(70% 40% at 50% -5%,rgba(31,107,255,.45),transparent 70%),#050a1c;padding:16px}
+main{max-width:480px;margin:20px auto}
+a.back{display:inline-block;margin-bottom:14px;color:#19d9ff;text-decoration:none;font-weight:800}
+.box{background:linear-gradient(160deg,#0f1737,#090d22);border:1px solid rgba(31,107,255,.4);border-radius:22px;padding:22px}
+h1{margin:0 0 14px;font-size:1.7rem}h2{font-size:1.05rem;margin:18px 0 8px;color:#19d9ff}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+button,input{width:100%;padding:13px;margin:6px 0;border-radius:12px;border:1px solid #34436d;font:inherit}
+input{background:#090e20;color:#fff}
+button{background:linear-gradient(100deg,#19d9ff,#1f6bff);border:0;color:#fff;font-weight:800;cursor:pointer}
+button:disabled{opacity:.6}
+.tabs button{background:#10183a;border:1px solid #34436d;margin:0}.tabs button.on{background:#1f4fb8;border-color:#19d9ff}
+.hidden{display:none!important}
+#msg{color:#aab5d1;font-size:.9rem;min-height:1.2em}
+.o{padding:12px 0;border-top:1px solid rgba(255,255,255,.1);display:grid;gap:3px}
+.o span{color:#19d9ff;font-weight:800}.o small{color:#aab5d1}
+</style></head><body><main>
+<a class="back" href="index.html">← Volver a la tienda</a>
+<section class="box" id="auth">
+<h1>Mi cuenta</h1>
+<div class="tabs"><button id="tabUp" class="on" type="button">Crear cuenta</button><button id="tabIn" type="button">Iniciar sesión</button></div>
+<form id="f">
+<input id="em" type="email" required placeholder="Correo electrónico" autocomplete="email">
+<input id="pw" type="password" minlength="8" required placeholder="Contraseña (mínimo 8 caracteres)" autocomplete="new-password">
+<input id="pw2" type="password" minlength="8" required placeholder="Repetir contraseña" autocomplete="new-password">
+<button id="go" type="submit">Crear cuenta</button>
+</form>
+<p id="msg"></p>
+</section>
+<section class="box hidden" id="me">
+<h1>¡Hola!</h1><p id="who"></p>
+<h2>Mis pedidos</h2><div id="list">Cargando...</div>
+<button id="out" type="button">Cerrar sesión</button>
+</section>
+</main>
+<script>
+(function(){
+var db=window.tgSupabase,$=function(i){return document.getElementById(i)},mode="up";
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function setMode(m){mode=m;$("tabUp").classList.toggle("on",m==="up");$("tabIn").classList.toggle("on",m==="in");$("pw2").classList.toggle("hidden",m!=="up");$("pw2").required=m==="up";$("go").textContent=m==="up"?"Crear cuenta":"Iniciar sesión";$("pw").autocomplete=m==="up"?"new-password":"current-password";$("msg").textContent=""}
+async function showMe(user){
+$("auth").classList.add("hidden");$("me").classList.remove("hidden");$("who").textContent=user.email;
+var r=await db.from("pedidos").select("id,created_at,juego,paquete,precio,estado").eq("usuario_id",user.id).order("created_at",{ascending:false});
+if(r.error){$("list").textContent="No se pudieron cargar tus pedidos.";return}
+$("list").innerHTML=r.data.length?r.data.map(function(p){return '<div class="o"><b>'+esc(p.juego)+' · '+esc(p.paquete)+'</b><span>Gs. '+Number(p.precio).toLocaleString("es-PY")+'</span><small>'+esc(p.estado)+' · '+esc(new Date(p.created_at).toLocaleDateString("es-PY"))+'</small></div>'}).join(""):"Todavía no tenés pedidos en esta cuenta."}
+$("f").addEventListener("submit",async function(e){
+e.preventDefault();
+if(!db){$("msg").textContent="No se pudo conectar. Intentá más tarde.";return}
+var email=$("em").value.trim(),pw=$("pw").value;
+$("go").disabled=true;$("msg").textContent="Procesando...";
+if(mode==="up"){
+if(pw!==$("pw2").value){$("msg").textContent="Las contraseñas no coinciden.";$("go").disabled=false;return}
+var a=await db.auth.signUp({email:email,password:pw,options:{emailRedirectTo:location.origin+location.pathname}});
+$("go").disabled=false;
+if(a.error){$("msg").textContent="No se pudo crear la cuenta. Revisá los datos o probá otra contraseña.";return}
+if(a.data.session){showMe(a.data.user)}else{setMode("in");$("msg").textContent="Cuenta creada. Revisá tu correo para confirmarla y después iniciá sesión."}
+}else{
+var s=await db.auth.signInWithPassword({email:email,password:pw});
+$("go").disabled=false;
+if(s.error){$("msg").textContent="Correo o contraseña incorrectos.";return}
+showMe(s.data.user)}
+});
+$("out").onclick=async function(){await db.auth.signOut();location.reload()};
+$("tabUp").onclick=function(){setMode("up")};$("tabIn").onclick=function(){setMode("in")};
+(async function(){if(!db)return;var r=await db.auth.getSession();if(r.data.session)showMe(r.data.session.user)})();
+})();
+</script></body></html>
